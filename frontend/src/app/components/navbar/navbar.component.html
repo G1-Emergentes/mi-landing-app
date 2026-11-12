@@ -1,0 +1,110 @@
+<header class="fixed top-0 left-0 right-0 w-full z-50 bg-mirage-cream/95 backdrop-blur-md border-b border-black/10 transition-all">
+  <div class="max-w-[1360px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
+    <!-- Brand Logo: Mirage ✦ by ReWear (Left) -->
+    <a href="#" class="flex items-center group shrink-0">
+      <img
+        src="images/logo.svg"
+        alt="Mirage by ReWear"
+        class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+      />
+    </a>
+
+    <!-- Right Side Combined Group: Links + Language + CTA Button (Exact Figma spacing) -->
+    <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+      <!-- Desktop Navigation Links -->
+      <nav class="flex items-center gap-7 xl:gap-8 font-medium text-sm">
+        <a href="#" class="text-mirage-primary font-bold">Inicio</a>
+        <a href="#features" class="text-mirage-dark/80 hover:text-mirage-primary transition-colors">Funcionalidades</a>
+        <a href="#b2b" class="text-mirage-dark/80 hover:text-mirage-primary transition-colors">Para tiendas</a>
+        <a href="#team" class="text-mirage-dark/80 hover:text-mirage-primary transition-colors">Nosotros</a>
+      </nav>
+
+      <!-- Selector ES | EN -->
+      <div class="flex items-center gap-1.5 text-xs font-bold">
+        <button
+          type="button"
+          (click)="setLanguage('ES')"
+          [class]="currentLang === 'ES' ? 'bg-mirage-primary text-white shadow-xs' : 'text-mirage-dark/70 hover:text-mirage-dark'"
+          class="px-2.5 py-1 rounded-full transition-all cursor-pointer"
+        >
+          ES
+        </button>
+        <span class="text-mirage-dark/25 font-normal">|</span>
+        <button
+          type="button"
+          (click)="setLanguage('EN')"
+          [class]="currentLang === 'EN' ? 'bg-mirage-primary text-white shadow-xs' : 'text-mirage-dark/70 hover:text-mirage-dark'"
+          class="px-2.5 py-1 rounded-full transition-all cursor-pointer"
+        >
+          EN
+        </button>
+      </div>
+
+      <!-- Botón Descargar app ↗ -->
+      <a
+        href="#download"
+        class="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-full text-sm font-bold text-white bg-mirage-primary hover:bg-mirage-primary-hover transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer shrink-0"
+      >
+        <span>Descargar app</span>
+        <span class="text-base font-bold leading-none">↗</span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      (click)="toggleMenu()"
+      type="button"
+      class="lg:hidden p-2 rounded-xl text-mirage-dark hover:bg-black/5 focus:outline-none cursor-pointer"
+      aria-label="Abrir menú"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        @if (!isMenuOpen) {
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        } @else {
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        }
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  @if (isMenuOpen) {
+    <div class="lg:hidden bg-mirage-cream border-b border-black/10 px-6 pt-3 pb-6 space-y-4 shadow-lg">
+      <a (click)="isMenuOpen = false" href="#" class="block py-2 text-base font-bold text-mirage-primary">Inicio</a>
+      <a (click)="isMenuOpen = false" href="#features" class="block py-2 text-base font-medium text-mirage-dark hover:text-mirage-primary">Funcionalidades</a>
+      <a (click)="isMenuOpen = false" href="#b2b" class="block py-2 text-base font-medium text-mirage-dark hover:text-mirage-primary">Para tiendas</a>
+      <a (click)="isMenuOpen = false" href="#team" class="block py-2 text-base font-medium text-mirage-dark hover:text-mirage-primary">Nosotros</a>
+
+      <div class="pt-4 flex items-center justify-between border-t border-black/10">
+        <div class="flex items-center gap-1 text-xs font-bold">
+          <button
+            type="button"
+            (click)="setLanguage('ES')"
+            [class]="currentLang === 'ES' ? 'bg-mirage-primary text-white' : 'text-mirage-dark/70'"
+            class="px-2.5 py-1 rounded-full transition-all"
+          >
+            ES
+          </button>
+          <span class="text-mirage-dark/25">|</span>
+          <button
+            type="button"
+            (click)="setLanguage('EN')"
+            [class]="currentLang === 'EN' ? 'bg-mirage-primary text-white' : 'text-mirage-dark/70'"
+            class="px-2.5 py-1 rounded-full transition-all"
+          >
+            EN
+          </button>
+        </div>
+
+        <a
+          (click)="isMenuOpen = false"
+          href="#download"
+          class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-bold text-white bg-mirage-primary shadow-sm"
+        >
+          <span>Descargar app</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+  }
+</header>

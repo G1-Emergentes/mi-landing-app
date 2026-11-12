@@ -1,0 +1,108 @@
+<section id="features" class="py-24 bg-mirage-cream relative">
+  <div class="max-w-[1360px] mx-auto px-6 sm:px-10">
+    <!-- Header Section -->
+    <div class="text-left mb-14">
+      <p class="text-xs font-black tracking-wider uppercase text-mirage-primary mb-4">
+        01 / FUNCIONALIDADES
+      </p>
+      <h2 class="text-4xl sm:text-5xl lg:text-[56px] font-serif-display font-normal text-mirage-dark tracking-tight leading-[1.08]">
+        Todo tu armario, en un solo lugar.
+      </h2>
+    </div>
+
+    @if (!isLoading && features.length > 0) {
+      <!-- Top Row: 3 cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        @for (feature of features; track feature.id; let idx = $index) {
+          @if (idx < 3) {
+            @let style = getStyleForFeature(feature, idx);
+            <div
+              [class]="style.cardBg + ' rounded-3xl p-8 sm:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg relative min-h-[240px] flex flex-col justify-between overflow-hidden group'"
+            >
+              <div class="flex items-start justify-between">
+                <div class="w-10 h-10 text-mirage-dark">
+                  @if (feature.title.toLowerCase().includes('armario')) {
+                    <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
+                  } @else if (feature.title.toLowerCase().includes('estilista')) {
+                    <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+                    </svg>
+                  } @else if (feature.title.toLowerCase().includes('avatar') || feature.title.toLowerCase().includes('probador')) {
+                    <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
+                  } @else {
+                    <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                    </svg>
+                  }
+                </div>
+                <div>
+                  @if (feature.title.toLowerCase().includes('armario')) {
+                    <img src="images/shirt-icon.png" alt="" class="h-14 w-auto object-contain drop-shadow-sm" />
+                  } @else if (feature.title.toLowerCase().includes('estilista')) {
+                    <img src="images/cardigan-icon.png" alt="" class="h-14 w-auto object-contain drop-shadow-sm" />
+                  } @else if (feature.title.toLowerCase().includes('avatar') || feature.title.toLowerCase().includes('probador')) {
+                    <span class="text-3xl font-black text-mirage-primary tracking-wider font-serif-display">IA</span>
+                  } @else {
+                    <img src="images/glasses-feature.png" alt="" class="h-14 w-auto object-contain drop-shadow-sm" />
+                  }
+                </div>
+              </div>
+              <div class="mt-8">
+                <h3 class="text-xl sm:text-2xl font-bold text-mirage-dark mb-2">{{ feature.title }}</h3>
+                <p class="text-sm text-mirage-dark/75 leading-relaxed">{{ feature.description }}</p>
+              </div>
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Bottom Row: 2 wider cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        @for (feature of features; track feature.id; let idx = $index) {
+          @if (idx >= 3) {
+            @let style = getStyleForFeature(feature, idx);
+            <div
+              [class]="style.cardBg + ' rounded-3xl p-8 sm:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg relative min-h-[220px] flex flex-col justify-between overflow-hidden group'"
+            >
+              <div class="flex items-start justify-between">
+                <div class="w-10 h-10 text-mirage-dark">
+                  @if (feature.title.toLowerCase().includes('realidad') || feature.title.toLowerCase().includes('ar')) {
+                    <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                    </svg>
+                  } @else if (feature.title.toLowerCase().includes('comunidad')) {
+                    <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.124 4.124 0 00-7.463-4.657 4.125 4.125 0 00-4.657 4.657A9.34 9.34 0 0015 19.128z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 6.75a9.375 9.375 0 01-2.625-.372A4.122 4.122 0 015.25 6.75z" />
+                    </svg>
+                  } @else {
+                    <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                    </svg>
+                  }
+                </div>
+                <div>
+                  @if (feature.title.toLowerCase().includes('realidad') || feature.title.toLowerCase().includes('ar')) {
+                    <img src="images/glasses-feature.png" alt="" class="h-16 w-auto object-contain drop-shadow-sm" />
+                  } @else if (feature.title.toLowerCase().includes('comunidad')) {
+                    <span class="text-4xl text-mirage-primary">&#9830;</span>
+                  } @else {
+                    <img src="images/shirt-icon.png" alt="" class="h-16 w-auto object-contain drop-shadow-sm" />
+                  }
+                </div>
+              </div>
+              <div class="mt-8">
+                <h3 class="text-2xl sm:text-3xl font-bold text-mirage-dark mb-2">{{ feature.title }}</h3>
+                <p class="text-sm sm:text-base text-mirage-dark/75 leading-relaxed">{{ feature.description }}</p>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    }
+  </div>
+</section>

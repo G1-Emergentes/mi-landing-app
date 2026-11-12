@@ -1,0 +1,163 @@
+<section id="contact" class="py-24 bg-mirage-cream relative border-t border-black/5">
+  <div class="max-w-[1360px] mx-auto px-6 sm:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <!-- Left Column: Copy & Blue Highlight Card -->
+      <div class="lg:col-span-5 space-y-6 text-left">
+        <h2 class="text-4xl sm:text-5xl lg:text-[56px] font-serif-display font-normal text-mirage-dark tracking-tight leading-[1.08]">
+          Conviértete en aliado de Mirage
+        </h2>
+
+        <p class="text-base sm:text-lg text-mirage-dark/75 leading-relaxed font-normal">
+          ¿Quieres que tus productos se descubran a través de experiencias de moda personalizadas? Cuéntanos sobre tu tienda.
+        </p>
+
+        <!-- Light Blue Card (#DFEBF3) from Figma -->
+        <div class="bg-mirage-blue rounded-3xl p-8 sm:p-10 space-y-4">
+          <!-- Store icon -->
+          <svg class="w-8 h-8 text-mirage-dark" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.614A2.993 2.993 0 009 9.35c.983-.913 2.518-.913 3.5 0a2.993 2.993 0 002.25-.614 3.001 3.001 0 003.75.614m-16.5 0L4.387 4.103A2.25 2.25 0 016.48 2.25h11.04c.85 0 1.62.48 1.993 1.253L21.613 9.35" />
+          </svg>
+          <p class="text-lg font-bold text-mirage-dark leading-snug">
+            Tu catálogo. Nuestra experiencia. Nuevas formas de conectar.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Form Card with rounded inputs -->
+      <div class="lg:col-span-7">
+        <div class="bg-white/80 rounded-3xl p-8 sm:p-12 border border-black/5 shadow-sm relative">
+          <!-- Error Alert -->
+          @if (errorMessage) {
+            <div class="p-4 mb-6 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold flex items-center gap-2">
+              <span>⚠️</span>
+              <span>{{ errorMessage }}</span>
+            </div>
+          }
+
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-5">
+            <!-- Nombre de la tienda -->
+            <div>
+              <label for="storeName" class="block text-xs font-bold text-mirage-dark mb-2">
+                Nombre de la tienda *
+              </label>
+              <input
+                id="storeName"
+                type="text"
+                formControlName="storeName"
+                placeholder="Ej. Vintage Bloom"
+                class="w-full px-5 py-3.5 rounded-2xl border border-black/10 bg-white text-sm text-mirage-dark focus:outline-none focus:ring-2 focus:ring-mirage-primary shadow-xs transition"
+              />
+              @if (contactForm.get('storeName')?.invalid && contactForm.get('storeName')?.touched) {
+                <span class="text-[11px] text-red-600 font-semibold mt-1 block">El nombre de la tienda es requerido.</span>
+              }
+            </div>
+
+            <!-- Representante -->
+            <div>
+              <label for="representative" class="block text-xs font-bold text-mirage-dark mb-2">
+                Representante *
+              </label>
+              <input
+                id="representative"
+                type="text"
+                formControlName="representative"
+                placeholder="Ej. Carlos Mendoza"
+                class="w-full px-5 py-3.5 rounded-2xl border border-black/10 bg-white text-sm text-mirage-dark focus:outline-none focus:ring-2 focus:ring-mirage-primary shadow-xs transition"
+              />
+              @if (contactForm.get('representative')?.invalid && contactForm.get('representative')?.touched) {
+                <span class="text-[11px] text-red-600 font-semibold mt-1 block">El nombre del representante es requerido.</span>
+              }
+            </div>
+
+            <!-- Correo electrónico -->
+            <div>
+              <label for="email" class="block text-xs font-bold text-mirage-dark mb-2">
+                Correo electrónico *
+              </label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="nombre@tutienda.com"
+                class="w-full px-5 py-3.5 rounded-2xl border border-black/10 bg-white text-sm text-mirage-dark focus:outline-none focus:ring-2 focus:ring-mirage-primary shadow-xs transition"
+              />
+              @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+                <span class="text-[11px] text-red-600 font-semibold mt-1 block">Ingresa un correo válido.</span>
+              }
+            </div>
+
+            <!-- Sitio web o redes sociales -->
+            <div>
+              <label for="websiteSocial" class="block text-xs font-bold text-mirage-dark mb-2">
+                Sitio web o redes sociales
+              </label>
+              <input
+                id="websiteSocial"
+                type="text"
+                formControlName="websiteSocial"
+                placeholder="https:// o @tutienda"
+                class="w-full px-5 py-3.5 rounded-2xl border border-black/10 bg-white text-sm text-mirage-dark focus:outline-none focus:ring-2 focus:ring-mirage-primary shadow-xs transition"
+              />
+            </div>
+
+            <!-- Mensaje -->
+            <div>
+              <label for="message" class="block text-xs font-bold text-mirage-dark mb-2">
+                Mensaje *
+              </label>
+              <textarea
+                id="message"
+                formControlName="message"
+                rows="4"
+                placeholder="Cuéntanos sobre tu tienda y tus productos..."
+                class="w-full px-5 py-3.5 rounded-2xl border border-black/10 bg-white text-sm text-mirage-dark focus:outline-none focus:ring-2 focus:ring-mirage-primary shadow-xs transition"
+              ></textarea>
+              @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+                <span class="text-[11px] text-red-600 font-semibold mt-1 block">Escribe un mensaje explicativo (mínimo 5 caracteres).</span>
+              }
+            </div>
+
+            <!-- Botón Submit -->
+            <button
+              type="submit"
+              [disabled]="isSubmitting"
+              class="w-full py-4 px-6 rounded-2xl bg-mirage-primary hover:bg-mirage-primary-hover text-white font-bold text-sm shadow-md transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer mt-4"
+            >
+              @if (isSubmitting) {
+                <span class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
+                <span>Enviando información...</span>
+              } @else {
+                <span>Enviar mensaje</span>
+                <span class="text-base font-bold leading-none">↗</span>
+              }
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmación de Éxito -->
+  @if (showSuccessModal) {
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+      <div class="bg-white rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl text-center space-y-5 border border-black/5">
+        <div class="w-16 h-16 rounded-full bg-mirage-lime mx-auto flex items-center justify-center text-3xl">
+          🎉
+        </div>
+        <h3 class="text-2xl font-serif-display font-normal text-mirage-dark">
+          ¡Solicitud Recibida!
+        </h3>
+        <p class="text-sm text-mirage-dark/75 leading-relaxed">
+          Gracias por contactarnos. Hemos recibido los datos de tu tienda y te contactaremos en breve.
+        </p>
+        <button
+          type="button"
+          (click)="closeModal()"
+          class="w-full py-3.5 px-6 rounded-full bg-mirage-dark hover:bg-black text-white font-bold text-sm shadow-md transition cursor-pointer"
+        >
+          Entendido
+        </button>
+      </div>
+    </div>
+  }
+</section>

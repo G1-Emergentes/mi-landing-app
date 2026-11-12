@@ -1,0 +1,56 @@
+<section id="team" class="py-24 bg-mirage-cream relative border-t border-black/5">
+  <div class="max-w-[1360px] mx-auto px-6 sm:px-10">
+    <!-- Header -->
+    <div class="text-left mb-16">
+      <p class="text-xs font-black tracking-wider uppercase text-mirage-primary mb-4">
+        EL EQUIPO
+      </p>
+      <h2 class="text-4xl sm:text-5xl lg:text-[56px] font-serif-display font-normal text-mirage-dark tracking-tight leading-[1.08]">
+        Conoce a ReWear.
+      </h2>
+    </div>
+
+    <!-- Loading State -->
+    @if (isLoading) {
+      <div class="flex flex-col justify-center items-center py-16 gap-3">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-mirage-primary"></div>
+        <p class="text-xs font-bold text-mirage-dark/60 tracking-wider uppercase">Cargando equipo desde Neon DB...</p>
+      </div>
+    }
+
+    <!-- Team Cards Grid -->
+    @if (!isLoading && team.length > 0) {
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        @for (member of team; track member.id) {
+          <div
+            class="bg-white rounded-3xl p-8 border border-black/5 hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
+          >
+            <div>
+              <!-- Photo -->
+              <div class="w-28 h-28 mb-6 overflow-hidden rounded-2xl bg-mirage-cream">
+                <img
+                  [src]="member.imageUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'"
+                  [alt]="member.name"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+
+              <!-- Name & Role -->
+              <h3 class="text-2xl font-bold text-mirage-dark mb-1">
+                {{ member.name }}
+              </h3>
+              <p class="text-xs font-bold text-mirage-primary uppercase tracking-wider mb-4">
+                {{ member.role }}
+              </p>
+
+              <!-- Bio -->
+              <p class="text-sm text-mirage-dark/75 leading-relaxed font-normal">
+                {{ member.bio }}
+              </p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>

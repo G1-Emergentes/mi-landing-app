@@ -1,0 +1,48 @@
+<footer class="bg-[#181818] text-white/90 py-16">
+  <div class="max-w-[1360px] mx-auto px-6 sm:px-10">
+    <!-- Top row: Brand Logo -->
+    <div class="mb-12">
+      <a href="#" class="inline-block">
+        <img
+          src="images/logo.svg"
+          alt="Mirage by ReWear"
+          class="h-9 w-auto object-contain brightness-0 invert"
+        />
+      </a>
+    </div>
+
+    <!-- Divider Line -->
+    <div class="w-full h-px bg-white/10 mb-8"></div>
+
+    <!-- Bottom Row: Copyright + Legal links + Language -->
+    <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-white/60 gap-4">
+      <p>© ReWear</p>
+
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-white transition-colors">Política de privacidad</a>
+        <a href="#" class="hover:text-white transition-colors">Términos y condiciones</a>
+      </div>
+
+      <!-- Language Selector -->
+      <div class="flex items-center gap-1.5 text-xs font-bold">
+        <button
+          type="button"
+          (click)="setLanguage('ES')"
+          [class]="currentLang === 'ES' ? 'bg-mirage-primary text-white shadow-xs' : 'text-white/60 hover:text-white'"
+          class="px-2.5 py-1 rounded-full transition-all cursor-pointer"
+        >
+          ES
+        </button>
+        <span class="text-white/20">|</span>
+        <button
+          type="button"
+          (click)="setLanguage('EN')"
+          [class]="currentLang === 'EN' ? 'bg-mirage-primary text-white shadow-xs' : 'text-white/60 hover:text-white'"
+          class="px-2.5 py-1 rounded-full transition-all cursor-pointer"
+        >
+          EN
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
